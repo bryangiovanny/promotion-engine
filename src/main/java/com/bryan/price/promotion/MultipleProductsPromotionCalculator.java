@@ -1,14 +1,37 @@
 package com.bryan.price.promotion;
 
 import com.bryan.price.model.Cart;
+import com.bryan.price.promotion.model.MultipleProductsPromotion;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MultipleProductsPromotionCalculator implements PromotionCalculator {
 
+    private List<MultipleProductsPromotion> multipleProductsPromotionList = new ArrayList<>();
+
+    public MultipleProductsPromotionCalculator() {
+        multipleProductsPromotionList.add(MultipleProductsPromotion
+                .builder().id("A").quantity(3).price(BigDecimal.valueOf(130))
+                .build());
+        multipleProductsPromotionList.add(MultipleProductsPromotion
+                .builder().id("B").quantity(2).price(BigDecimal.valueOf(45))
+                .build());
+    }
+
     @Override
     public BigDecimal calculatePromotion(Cart cart) {
-        return BigDecimal.ZERO;
+        return multipleProductsPromotionList.stream()
+                .map(multipleProductsPromotion ->
+                        cart.getCartProductList().stream()
+                                .filter(cartProduct -> cartProduct.getProduct().getId().equals(multipleProductsPromotion.getId()) &&
+                                        cartProduct.getQuantity() >= multipleProductsPromotion.getQuantity())
+                                .map(cartProduct -> {
+                                    cartProduct.setQuantity(cartProduct.getQuantity() - multipleProductsPromotion.getQuantity());
+                                    return multipleProductsPromotion.getPrice();
+                                }).reduce(BigDecimal.ZERO, BigDecimal::add)
+                ).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 }
