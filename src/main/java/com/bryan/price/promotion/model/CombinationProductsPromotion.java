@@ -4,11 +4,11 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @Builder
-public class CombinationProductsPromotionCalculator {
-    private List<String> productIds;
+public class CombinationProductsPromotion {
+    private String product1;
+    private String product2;
     private BigDecimal price;
 }
