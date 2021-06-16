@@ -28,6 +28,15 @@ class MultipleProductsPromotionCalculatorTest {
                         )),
                         BigDecimal.valueOf(130),
                         Map.of("A", 2, "B", 1)
+                ),
+                Arguments.of(
+                        "Given: A=1 B=5;When : Calculate Total Price; Then: Result=90, A remaining 1 B remaining 1",
+                        new Cart(List.of(
+                                new CartProduct(new Product("A", BigDecimal.valueOf(50)), 1),
+                                new CartProduct(new Product("B", BigDecimal.valueOf(30)), 5)
+                        )),
+                        BigDecimal.valueOf(90),
+                        Map.of("A", 1, "B", 1)
                 )
         );
     }
