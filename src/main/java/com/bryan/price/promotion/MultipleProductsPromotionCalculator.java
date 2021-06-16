@@ -28,8 +28,10 @@ public class MultipleProductsPromotionCalculator implements PromotionCalculator 
                                 .filter(cartProduct -> cartProduct.getProduct().getId().equals(multipleProductsPromotion.getId()) &&
                                         cartProduct.getQuantity() >= multipleProductsPromotion.getQuantity())
                                 .map(cartProduct -> {
-                                    cartProduct.setQuantity(cartProduct.getQuantity() - multipleProductsPromotion.getQuantity());
-                                    return multipleProductsPromotion.getPrice();
+                                    int numOfPromo = cartProduct.getQuantity() / multipleProductsPromotion.getQuantity();
+                                    int quantityLeft = cartProduct.getQuantity() % multipleProductsPromotion.getQuantity();
+                                    cartProduct.setQuantity(quantityLeft);
+                                    return multipleProductsPromotion.getPrice().multiply(BigDecimal.valueOf(numOfPromo));
                                 }).reduce(BigDecimal.ZERO, BigDecimal::add)
                 ).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
