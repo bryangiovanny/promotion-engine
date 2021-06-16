@@ -12,6 +12,7 @@ public class MultipleProductsPromotionCalculator implements PromotionCalculator 
     private List<MultipleProductsPromotion> multipleProductsPromotionList = new ArrayList<>();
 
     public MultipleProductsPromotionCalculator() {
+        // Typically configured in database
         multipleProductsPromotionList.add(MultipleProductsPromotion
                 .builder().id("A").quantity(3).price(BigDecimal.valueOf(130))
                 .build());
