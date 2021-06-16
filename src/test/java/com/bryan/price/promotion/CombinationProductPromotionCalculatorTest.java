@@ -29,6 +29,16 @@ class CombinationProductPromotionCalculatorTest {
                         )),
                         BigDecimal.valueOf(30),
                         Map.of("A", 1, "C", 0, "D", 0)
+                ),
+                Arguments.of(
+                        "Given: A=1 C=2 D=3;When : Calculate Total Price; Then: Result=60, A remaining 1 C remaining 0 D remaining 0",
+                        new Cart(List.of(
+                                new CartProduct(new Product("A", BigDecimal.valueOf(50)), 1),
+                                new CartProduct(new Product("C", BigDecimal.valueOf(30)), 2),
+                                new CartProduct(new Product("D", BigDecimal.valueOf(15)), 3)
+                        )),
+                        BigDecimal.valueOf(30),
+                        Map.of("A", 1, "C", 0, "D", 1)
                 )
         );
     }
