@@ -26,6 +26,14 @@ class PriceCalculatorTest {
                                 new CartProduct(new Product("B", BigDecimal.valueOf(30)), 1),
                                 new CartProduct(new Product("C", BigDecimal.valueOf(20)), 1))),
                         BigDecimal.valueOf(100)
+                ),
+                Arguments.of(
+                        "Given: A=5, B=5, C=1 ;When : Calculate Total Price; Then: Result=370",
+                        new Cart(List.of(
+                                new CartProduct(new Product("A", BigDecimal.valueOf(50)), 5),
+                                new CartProduct(new Product("B", BigDecimal.valueOf(30)), 5),
+                                new CartProduct(new Product("C", BigDecimal.valueOf(20)), 1))),
+                        BigDecimal.valueOf(370)
                 )
         );
     }
