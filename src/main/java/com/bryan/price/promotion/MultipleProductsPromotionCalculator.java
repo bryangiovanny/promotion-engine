@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MultipleProductsPromotionCalculator implements PromotionCalculator {
 
-    private List<MultipleProductsPromotion> multipleProductsPromotionList = new ArrayList<>();
+    private final List<MultipleProductsPromotion> multipleProductsPromotionList = new ArrayList<>();
 
     public MultipleProductsPromotionCalculator() {
         // Typically configured in database
