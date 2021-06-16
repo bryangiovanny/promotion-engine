@@ -37,7 +37,7 @@ class CombinationProductPromotionCalculatorTest {
                                 new CartProduct(new Product("C", BigDecimal.valueOf(30)), 2),
                                 new CartProduct(new Product("D", BigDecimal.valueOf(15)), 3)
                         )),
-                        BigDecimal.valueOf(30),
+                        BigDecimal.valueOf(60),
                         Map.of("A", 1, "C", 0, "D", 1)
                 )
         );

@@ -36,9 +36,10 @@ public class CombinationProductPromotionCalculator implements PromotionCalculato
             BigDecimal promotion = BigDecimal.ZERO;
 
             if (product1.isPresent() && product2.isPresent()) {
-                product1.get().setQuantity(product1.get().getQuantity() - 1);
-                product2.get().setQuantity(product2.get().getQuantity() - 1);
-                promotion = promotion.add(combinationProductsPromotion.getPrice());
+                Integer minimum = Integer.min(product1.get().getQuantity(), product2.get().getQuantity());
+                product1.get().setQuantity(product1.get().getQuantity() - minimum);
+                product2.get().setQuantity(product2.get().getQuantity() - minimum);
+                promotion = promotion.add(combinationProductsPromotion.getPrice().multiply(BigDecimal.valueOf(minimum)));
             }
             return promotion;
         }).reduce(BigDecimal.ZERO, BigDecimal::add);
